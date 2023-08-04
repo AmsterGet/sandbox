@@ -1,3 +1,7 @@
+.my-custom-theme {
+  --rp-ui-kit-font-family-base: OpenSans, Segoe UI, Tahoma, sans-serif;
+}
+
 .App {
   text-align: center;
 }

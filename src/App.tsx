@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { Button, ThemeProvider } from '@reportportal/ui-kit';
 
 function App() {
   return (
@@ -18,6 +19,17 @@ function App() {
         >
           Learn React
         </a>
+        <Button>Button</Button>
+        <Button variant="danger">Button</Button>
+        <ThemeProvider theme="light">
+          <Button>Light theme button</Button>
+        </ThemeProvider>
+        <ThemeProvider customThemes={{ 'my-theme': 'my-custom-theme' }} theme="my-theme">
+          <Button>Custom theme button</Button>
+          <ThemeProvider theme="dark">
+            <Button>Dark theme button override</Button>
+          </ThemeProvider>
+        </ThemeProvider>
       </header>
     </div>
   );
