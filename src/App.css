@@ -1,5 +1,15 @@
 .my-custom-theme {
   --rp-ui-kit-font-family-base: OpenSans, Segoe UI, Tahoma, sans-serif;
+  --rp-ui-kit-color-primary: green;
+  --rp-ui-kit-color-primary-hover: #69e569;
+  --rp-ui-kit-color-primary-focused: var(--rp-ui-kit-color-primary-hover);
+  --rp-ui-kit-color-primary-pressed: var(--rp-ui-kit-color-primary-hover);
+}
+
+.Custom-theme {
+  border: 2px solid white;
+  padding: 5px;
+  margin: 5px 0;
 }
 
 .App {
