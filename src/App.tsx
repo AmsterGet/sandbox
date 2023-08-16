@@ -47,25 +47,15 @@ function App() {
     setShowModal(false);
   }
 
-  const modalProps = {
-    title: 'Login form',
-    okButton: {
-      // type: 'submit',
-      children: 'Login',
-      onClick: () => {
-        console.log('Logged in successfully');
-      },
-    },
-    cancelButton: {
-      children: 'Cancel',
-    },
-  };
+  const login = () => {
+    console.log('Logged in successfully');
+  }
 
   return (
     <div className="App">
       <header className="App-header">
         <SystemMessage header="Header" caption="Caption" widthByContent>Message</SystemMessage>
-        <Button onClick={showModalAction}>Button</Button>
+        <Button type="submit" onClick={showModalAction}>Button</Button>
         <ThemeProvider theme="light">
           <Button>Light theme button</Button>
         </ThemeProvider>
@@ -83,7 +73,18 @@ function App() {
           </ThemeProvider>
         </div>
         {showModal && (
-            <Modal overlay="light-cyan" onClose={closeModalAction} {...modalProps}>
+            <Modal
+              title={'Login form'}
+              okButton={{
+                  type: 'submit',
+                  children: 'Login',
+                  onClick: login,
+              }}
+              cancelButton={{
+                children: 'Cancel'
+              }}
+              overlay="light-cyan" onClose={closeModalAction}
+            >
               <ModalContent />
               <ModalContent />
               <ModalContent />
