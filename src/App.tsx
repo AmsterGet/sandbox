@@ -1,34 +1,74 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-// @ts-ignore
-import Button from '@reportportal/ui-kit/dist/button.js';
-import { ThemeProvider, Checkbox, SystemMessage, FieldText } from '@reportportal/ui-kit';
+import { ThemeProvider, Checkbox, SystemMessage, FieldText, Modal, Button } from '@reportportal/ui-kit';
 
-function App() {
+const ModalContent = () => {
   const [name, setName] = React.useState('');
   const [checked, setChecked] = React.useState(true);
 
-  const onNameChange = (event: any) => {
+  const onChangeCheckmark = (event: any) => {
+    setChecked(event.target.checked);
+  };
+
+  const onChangeName = (event: any) => {
     setName(event.target.value);
   }
 
-  const onChange = (event: any) => {
-    setChecked(event.target.checked);
+  const onClearName = () => {
+    setName('');
+  };
+
+  return (
+      <div>
+        <FieldText
+            label="What is your name?"
+            placeholder="Type name here"
+            helpText={'This field is intended for ...'}
+            value={name}
+            onChange={onChangeName}
+            clearable
+            onClear={onClearName}
+        />
+        <Checkbox value={checked} onChange={onChangeCheckmark}>Check me</Checkbox>
+      </div>
+  );
+}
+
+function App() {
+  const [showModal, setShowModal] = React.useState(false);
+
+  const showModalAction = () => {
+    setShowModal(true);
+  }
+
+  const closeModalAction = () => {
+    setShowModal(false);
+  }
+
+  const modalProps = {
+    title: 'Login form',
+    okButton: {
+      // type: 'submit',
+      children: 'Login',
+      onClick: () => {
+        console.log('Logged in successfully');
+      },
+    },
+    cancelButton: {
+      children: 'Cancel',
+    },
   };
 
   return (
     <div className="App">
       <header className="App-header">
-        <FieldText placeholder="Type smth here" value={name} onChange={onNameChange} clearable onClear={() => setName('')} defaultWidth />
         <SystemMessage header="Header" caption="Caption" widthByContent>Message</SystemMessage>
-        <Button>Button</Button>
+        <Button onClick={showModalAction}>Button</Button>
         <ThemeProvider theme="light">
           <Button>Light theme button</Button>
         </ThemeProvider>
         <ThemeProvider theme="dark">
           <Button>Dark theme button</Button>
-          <Checkbox value={checked} onChange={onChange}>Checkbox dark</Checkbox>
         </ThemeProvider>
         <div className="Custom-theme">
           Custom theme
@@ -40,6 +80,11 @@ function App() {
             </ThemeProvider>
           </ThemeProvider>
         </div>
+        {showModal && (
+            <Modal overlay="light-cyan" onClose={closeModalAction} {...modalProps}>
+              <ModalContent />
+            </Modal>
+        )}
       </header>
     </div>
   );
