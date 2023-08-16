@@ -4,7 +4,7 @@ import { ThemeProvider, Checkbox, SystemMessage, FieldText, Modal, Button } from
 
 const ModalContent = () => {
   const [name, setName] = React.useState('');
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = React.useState(false);
 
   const onChangeCheckmark = (event: any) => {
     setChecked(event.target.checked);
@@ -20,15 +20,17 @@ const ModalContent = () => {
 
   return (
       <div>
-        <FieldText
-            label="What is your name?"
-            placeholder="Type name here"
-            helpText={'This field is intended for ...'}
-            value={name}
-            onChange={onChangeName}
-            clearable
-            onClear={onClearName}
-        />
+        {!checked && (
+            <FieldText
+                label="What is your name?"
+                placeholder="Type name here"
+                helpText={'This field is intended for ...'}
+                value={name}
+                onChange={onChangeName}
+                clearable
+                onClear={onClearName}
+            />
+        )}
         <Checkbox value={checked} onChange={onChangeCheckmark}>Check me</Checkbox>
       </div>
   );
@@ -82,6 +84,10 @@ function App() {
         </div>
         {showModal && (
             <Modal overlay="light-cyan" onClose={closeModalAction} {...modalProps}>
+              <ModalContent />
+              <ModalContent />
+              <ModalContent />
+              <ModalContent />
               <ModalContent />
             </Modal>
         )}
