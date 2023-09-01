@@ -15,7 +15,7 @@
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
-    "@reportportal/ui-kit": "0.0.1-alpha.5"
+    "@reportportal/ui-kit": "0.0.1-alpha.7"
   },
   "scripts": {
     "start": "react-scripts start",
